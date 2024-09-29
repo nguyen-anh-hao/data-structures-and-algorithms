@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/merge-sorted-array/description/
+// https://leetcode.com/problems/merge-sorted-array/
 
 #include <bits/stdc++.h>
 
