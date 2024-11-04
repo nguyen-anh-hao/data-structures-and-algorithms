@@ -39,11 +39,24 @@ public:
     virtual int evaluatePassword(string s, int x) = 0;
 };
 
-class NaivePVHPasswordSolution : public BaseSolution {
+class PVHPasswordSolution : public BaseSolution {
 public:
     int evaluatePassword(string s, int x) override {
-        // Code here
-        return 0;
+        int evaluate[128] = {};
+        evaluate['a'] = x;
+
+        for (int i = 'b'; i <= 'z'; ++i) {
+            if (i == 'z' - x + 1)
+                continue;
+            evaluate[i] = evaluate[i - 1] + 1;
+        }
+
+        int result = 0;
+        for (char c : s) {
+            result += evaluate[c];
+        }
+
+        return result;
     }
 };
 
@@ -65,7 +78,7 @@ int main() {
     freopen("pvhpassword.out", "w", stdout);
 #endif
 
-    BaseSolution* solution = new NaivePVHPasswordSolution();
+    BaseSolution* solution = new PVHPasswordSolution();
 
     string s;
     int x;
